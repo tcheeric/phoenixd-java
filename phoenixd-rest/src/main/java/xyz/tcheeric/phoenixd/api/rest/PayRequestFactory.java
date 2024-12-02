@@ -1,0 +1,28 @@
+package xyz.tcheeric.phoenixd.api.rest;
+
+import lombok.NonNull;
+import xyz.tcheeric.phoenixd.api.model.rest.PayBolt11InvoiceParam;
+import xyz.tcheeric.phoenixd.api.model.rest.PayLightningAddressParam;
+
+import java.util.regex.Pattern;
+
+public class PayRequestFactory {
+
+    private static final Pattern BOLT11_PATTERN = Pattern.compile("^(lnbc|lntb|lnsb|lnbcrt)[0-9]*[a-z0-9]+$");
+
+    public static BasePayRequest<?, ?> createPayRequest(@NonNull String request) {
+
+        if (request.contains("@")) {
+            PayLightningAddressParam param = new PayLightningAddressParam();
+            param.setAddress(request);
+            return new PayLightningAddressRequest(param);
+        } else if (BOLT11_PATTERN.matcher(request).matches()) {
+            PayBolt11InvoiceParam param = new PayBolt11InvoiceParam();
+            param.setInvoice(request);
+            return new PayBolt11InvoiceRequest(param);
+        } else {
+            return null;
+            //throw new IllegalArgumentException("Invalid request format");
+        }
+    }
+}
