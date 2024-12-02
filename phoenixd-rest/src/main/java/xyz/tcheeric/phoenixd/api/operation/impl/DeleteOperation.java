@@ -9,6 +9,7 @@ import xyz.tcheeric.phoenixd.api.operation.AbstractOperation;
 
 import java.net.http.HttpHeaders;
 import java.net.http.HttpRequest;
+import java.net.http.HttpRequest.Builder;
 
 public class DeleteOperation extends AbstractOperation {
 
@@ -26,19 +27,24 @@ public class DeleteOperation extends AbstractOperation {
         super(Constants.HTTP_DELETE_METHOD, path, requestParam, null);
     }
 
-    // TODO
     @Override
-    public Operation removeHeader(String key) {
+    public Operation removeHeader(@NonNull String key) {
         HttpHeaders headers = httpRequest.headers();
-        // Complete the implementation
+        Builder requestBuilder = HttpRequest.newBuilder(httpRequest.uri())
+                .method(httpRequest.method(), httpRequest.bodyPublisher().orElse(HttpRequest.BodyPublishers.noBody()));
 
-        return null;
+        headers.map().forEach((headerKey, headerValues) -> {
+            if (!headerKey.equalsIgnoreCase(key)) {
+                headerValues.forEach(value -> requestBuilder.header(headerKey, value));
+            }
+        });
+
+        this.httpRequest = requestBuilder.build();
+        return this;
     }
 
     @Override
     public Operation addHeader(String key, String value) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from
-                                                                       // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet.");
     }
-
 }
