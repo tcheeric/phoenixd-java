@@ -22,7 +22,6 @@ public class Configuration {
             properties.load(input);
         } catch (IOException ex) {
             log.log(Level.SEVERE, "An error occurred", ex);
-            //ex.printStackTrace();
         }
     }
 
@@ -42,4 +41,15 @@ public class Configuration {
         return Integer.parseInt(properties.getProperty("phoenixd.timeout"));
     }
 
+    public static String getWebhookSecret() {
+        return properties.getProperty("phoenixd.webhook_secret");
+    }
+
+    public static String getTestPayRecipient() {
+        return properties.getProperty("test.pay_recipient");
+    }
+
+    public static Integer getTestPayAmountSat() {
+        return Integer.parseInt(properties.getProperty("test.pay_amountSat"));
+    }
 }

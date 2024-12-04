@@ -17,10 +17,10 @@ public class PayBolt11InvoiceRequestTest {
         payBolt11InvoiceParam.setAmountSat(10);
         PayBolt11InvoiceRequest payBolt11InvoiceRequest = new PayBolt11InvoiceRequest(payBolt11InvoiceParam);
 
-        // Act & Assert
+        // Assert
         assertEquals("/payinvoice", payBolt11InvoiceRequest.getPath());
         assertEquals(payBolt11InvoiceParam, payBolt11InvoiceRequest.getParam());
         assertEquals(PostOperation.class, payBolt11InvoiceRequest.getOperation().getClass());
-        assertEquals(payBolt11InvoiceParam.toString(), payBolt11InvoiceRequest.getOperation().getBody());
+        assertEquals(payBolt11InvoiceParam.toString(), payBolt11InvoiceRequest.getOperation().getRequestData());
     }
 }

@@ -26,7 +26,7 @@ public abstract class AbstractRequest<T extends Request.Param, U extends Respons
         if (VoidResponse.class.isAssignableFrom(responseType)) {
             return (U) new VoidResponse();
         }
-        String body = this.getOperation().execute().getBody();
+        String body = this.getOperation().execute().getResponseBody();
         ObjectMapper objectMapper = new ObjectMapper();
         return objectMapper.readValue(body, responseType);
     }

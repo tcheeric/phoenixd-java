@@ -3,7 +3,6 @@ package xyz.tcheeric.phoenixd.api.operation;
 import cashu.gateway.model.Request;
 import cashu.gateway.rest.Operation;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.SneakyThrows;
 import xyz.tcheeric.phoenixd.api.util.Configuration;
@@ -18,19 +17,20 @@ import java.time.Duration;
 import java.util.Base64;
 import java.util.concurrent.CompletableFuture;
 
-@NoArgsConstructor
+//@NoArgsConstructor
 @Data
 public abstract class AbstractOperation implements Operation {
 
     protected HttpRequest httpRequest;
-    private String body;
+    private String responseBody;
+    private String requestData;
 
     public AbstractOperation(@NonNull HttpRequest httpRequest) {
         this.httpRequest = httpRequest;
     }
 
     @SneakyThrows
-    public AbstractOperation(@NonNull String method, @NonNull String path, String data) {
+    public AbstractOperation(@NonNull String method, @NonNull String path, String requestData) {
         String username = Configuration.getUsername();
         String password = Configuration.getPassword();
         String baseUrl = Configuration.getBaseUrl();
@@ -38,9 +38,9 @@ public abstract class AbstractOperation implements Operation {
         String auth = username + ":" + password;
         String encodedAuth = Base64.getEncoder().encodeToString(auth.getBytes(StandardCharsets.UTF_8));
 
-        this.body = data;
+        this.requestData = requestData;
 
-        HttpRequest.BodyPublisher bodyPublisher = data == null ? HttpRequest.BodyPublishers.noBody() : HttpRequest.BodyPublishers.ofString(data);
+        HttpRequest.BodyPublisher bodyPublisher = requestData == null ? HttpRequest.BodyPublishers.noBody() : HttpRequest.BodyPublishers.ofString(requestData);
 
         this.httpRequest = HttpRequest.newBuilder()
                 .uri(URI.create(baseUrl + path))
@@ -52,16 +52,16 @@ public abstract class AbstractOperation implements Operation {
     }
 
     @SneakyThrows
-    public AbstractOperation(@NonNull String method, @NonNull String path, @NonNull Request.Param param, String data) {
+    public AbstractOperation(@NonNull String method, @NonNull String path, @NonNull Request.Param param, String requestData) {
         String username = Configuration.getUsername();
         String password = Configuration.getPassword();
         String auth = username + ":" + password;
         String encodedAuth = Base64.getEncoder().encodeToString(auth.getBytes(StandardCharsets.UTF_8));
         long timeout = Configuration.getTimeout();
 
-        this.body = data;
+        this.requestData = requestData;
 
-        HttpRequest.BodyPublisher bodyPublisher = data == null ? HttpRequest.BodyPublishers.noBody() : HttpRequest.BodyPublishers.ofString(data);
+        HttpRequest.BodyPublisher bodyPublisher = requestData == null ? HttpRequest.BodyPublishers.noBody() : HttpRequest.BodyPublishers.ofString(requestData);
 
         var separator = param.getKind() == Request.Param.Kind.PATH ? "/" : "?";
         this.httpRequest = HttpRequest.newBuilder()
@@ -79,10 +79,10 @@ public abstract class AbstractOperation implements Operation {
         CompletableFuture<HttpResponse<String>> response = HttpClient.newBuilder()
                 .build()
                 .sendAsync(httpRequest, HttpResponse.BodyHandlers.ofString());
-        this.body = response.get().body();
+        this.responseBody = response.get().body();
         var statusCode = response.get().statusCode();
         if (statusCode < 200 || statusCode >= 300) {
-            throw new IOException("Failed to create invoice: " + statusCode + " " + body);
+            throw new IOException("Failed to create invoice: " + statusCode + " " + responseBody);
         }
         return this;
     }
