@@ -15,7 +15,7 @@ public class PayLightningAddressTest {
     public void testConstructor() {
         // Arrange
         PayLightningAddressParam payLightningAddressParam = new PayLightningAddressParam();
-        payLightningAddressParam.setAddress(Configuration.getTestPayRecipient());
+        payLightningAddressParam.setAddress(Configuration.getTestPayLnAddress());
         payLightningAddressParam.setMessage("test message: testConstructor" + System.currentTimeMillis());
         payLightningAddressParam.setAmountSat(Configuration.getTestPayAmountSat());
         PayLightningAddressRequest payLightningAddressRequest = new PayLightningAddressRequest(payLightningAddressParam);

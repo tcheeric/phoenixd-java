@@ -45,8 +45,12 @@ public class Configuration {
         return properties.getProperty("phoenixd.webhook_secret");
     }
 
-    public static String getTestPayRecipient() {
-        return properties.getProperty("test.pay_recipient");
+    public static String getTestPayLnAddress() {
+        return properties.getProperty("test.pay_lnaddress");
+    }
+
+    public static String getTestPayLnInvoice() {
+        return properties.getProperty("test.pay_lninvoice");
     }
 
     public static Integer getTestPayAmountSat() {
