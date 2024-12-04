@@ -21,14 +21,13 @@ public class PayLightningAddressTest {
         PayLightningAddressRequest payLightningAddressRequest = new PayLightningAddressRequest(payLightningAddressParam);
 
         // Act
-        // PayLightningAddressInvoiceResponse response = payLightningAddressRequest.getResponse();
+        PayLightningAddressInvoiceResponse response = payLightningAddressRequest.getResponse();
 
         // Assert
         assertEquals("/paylnaddress", payLightningAddressRequest.getPath());
         assertEquals(PostOperation.class, payLightningAddressRequest.getOperation().getClass());
         assertEquals(payLightningAddressParam.toString(), payLightningAddressRequest.getOperation().getRequestData());
-        //assertEquals(10, response.getRecipientAmountSat());
-        //assertEquals(4, response.getRoutingFeeSat());
+        assertEquals(10, response.getRecipientAmountSat());
     }
 
 }
