@@ -1,11 +1,11 @@
 package xyz.tcheeric.phoenixd.api.operation.impl;
 
 import cashu.gateway.model.Request;
-import cashu.gateway.rest.Constants;
 import cashu.gateway.rest.Operation;
 import lombok.NonNull;
 import lombok.SneakyThrows;
 import xyz.tcheeric.phoenixd.api.operation.AbstractOperation;
+import xyz.tcheeric.phoenixd.api.util.Constants;
 
 public class PatchOperation extends AbstractOperation {
 

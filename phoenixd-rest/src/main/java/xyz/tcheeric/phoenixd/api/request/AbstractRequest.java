@@ -7,6 +7,7 @@ import cashu.gateway.rest.Operation;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 
 import java.io.IOException;
 import java.lang.reflect.ParameterizedType;
@@ -18,8 +19,9 @@ public abstract class AbstractRequest<T extends Request.Param, U extends Respons
     private final Param param;
     private final Operation operation;
 
+    @SneakyThrows
     @Override
-    public U getResponse() throws IOException {
+    public U getResponse() {
         Class<U> responseType = getResponseType();
         if (VoidResponse.class.isAssignableFrom(responseType)) {
             return (U) new VoidResponse();
