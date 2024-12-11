@@ -6,7 +6,7 @@ This is a Java wrapper for ACINQ's [phoenixd REST API](https://phoenix.acinq.co/
 - Java 21
 - Maven 
 - A running instance of phoenixd
-- A valid Lightning address (for testing. See below)
+- A valid Lightning address (for testing purpose only. See below)
 
 ## Contributing
 Currently, only a minimal subset of the endpoints are implemented. If you would like to contribute to this project, please feel free to fork the repository and submit a pull request on the `develop` branch.
