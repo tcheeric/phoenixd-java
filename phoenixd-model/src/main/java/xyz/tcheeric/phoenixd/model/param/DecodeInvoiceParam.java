@@ -1,8 +1,8 @@
 package xyz.tcheeric.phoenixd.model.param;
 
-import cashu.gateway.model.Request;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import xyz.tcheeric.common.rest.Request;
 
 @Data
 @NoArgsConstructor

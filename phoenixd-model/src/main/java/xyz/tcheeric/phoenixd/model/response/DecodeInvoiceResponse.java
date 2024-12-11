@@ -1,9 +1,9 @@
 package xyz.tcheeric.phoenixd.model.response;
 
-import cashu.gateway.model.Response;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import xyz.tcheeric.common.rest.Response;
 
 import java.util.List;
 

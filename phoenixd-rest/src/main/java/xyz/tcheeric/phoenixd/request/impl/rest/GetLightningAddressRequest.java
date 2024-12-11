@@ -1,6 +1,6 @@
 package xyz.tcheeric.phoenixd.request.impl.rest;
 
-import cashu.gateway.model.VoidRequestParam;
+import xyz.tcheeric.common.rest.VoidRequestParam;
 import xyz.tcheeric.phoenixd.model.response.GetLightningAddressResponse;
 import xyz.tcheeric.phoenixd.request.impl.GetRequest;
 
