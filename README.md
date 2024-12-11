@@ -16,4 +16,4 @@ To implement a new endppoint, you need to create three classes
 3. The actual endpoint request sub-class (in the `phoenixd-rest` module)
 4. The corresponding unit tests (in the `phoenixd-test` module)
 
-**IMPORTANT**: Please make sure to change the `test.pay_lnaddress` property in the `app.properties` file in the `phoenixd-test` module to a valid Lightning address that you control before running the tests.
+**IMPORTANT**: Please make sure to *change* the `test.pay_lnaddress` property in the `app.properties` file of the `phoenixd-test` module to a valid Lightning address that *you control* **before** running the tests.
