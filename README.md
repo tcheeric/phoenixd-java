@@ -1,4 +1,4 @@
-#phoenixd-java
+# phoenixd-java
 
 This is a Java wrapper for ACINQ's [phoenixd REST API](https://phoenix.acinq.co/server/api).
 
