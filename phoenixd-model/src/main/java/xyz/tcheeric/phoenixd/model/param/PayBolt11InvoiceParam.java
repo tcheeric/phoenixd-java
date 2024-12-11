@@ -11,9 +11,8 @@ public class PayBolt11InvoiceParam implements Request.Param {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("amountSat=").append(amountSat)
-                .append("&invoice=").append(invoice);
-        return sb.toString();
+        String sb = "amountSat=" + amountSat +
+                    "&invoice=" + invoice;
+        return sb;
     }
 }

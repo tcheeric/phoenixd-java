@@ -6,12 +6,7 @@ import xyz.tcheeric.common.rest.Request;
 import xyz.tcheeric.common.rest.util.Constants;
 import xyz.tcheeric.phoenixd.operation.AbstractOperation;
 
-import java.net.http.HttpHeaders;
 import java.net.http.HttpRequest;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class PostOperation extends AbstractOperation {
 
