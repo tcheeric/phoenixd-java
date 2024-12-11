@@ -16,7 +16,7 @@ To implement a new endppoint, you need to create three classes
 3. The actual endpoint request sub-class (in the `phoenixd-rest` module)
 4. The corresponding unit tests (in the `phoenixd-test` module)
 
-### Supported endpoints:
+### Supported endpoints
 - /createinvoice
 - /decodeinvoice
 - /getlnaddress
